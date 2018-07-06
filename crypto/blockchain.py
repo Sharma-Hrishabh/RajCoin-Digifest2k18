@@ -3,6 +3,8 @@ from hashlib import sha256
 import time
 import json
 
+
+
 class block:
 	def __init__(self, index, data, timestamp, amount, sender, receiver ,previousHash = ''):
 		self.index = index
@@ -12,14 +14,15 @@ class block:
 		self.sender = sender
 		self.receiver = receiver
 		self.timestamp = timestamp
-		self.hashe = ''
+		# self.hashe = ''
 		self.nonce = 0
+		self.hashe = calculatehash()
 
 	def calculateHash(self):
 		# returning hash for a set of data
 		return sha256((str(self.index) + str(self.data) + str(self.amount) + str(self.sender) + str(self.receiver) 
-					+ str(self.timestamp) + str(self.nonce) + str(self.previousHash)).encode())
-	
+					+ str(self.timestamp) + str(self.nonce) + str(self.previousHash)).encode()).hexstring()
+
 	#def mineBlock(self, difficulty):
 	#	codeHash = str(self.hashe)[0:difficulty]
 	#	while not codeHash == "0"*difficulty:
@@ -81,3 +84,28 @@ data = {
 
 print(json.dumps(data))
 '''
+
+def newNode(dataList):
+	lastBlock = blockDB.objects.order_by('-time')[0]
+	prevHash = lastBlock.hashe
+	point = block(index=3, dataList[0], time.ctime(), dataList[1], dataList[2], dataList[3], prevHash)  
+	point.calculateHash()
+	
+	# put "point" into transactions database
+	b = blockDB(data = str(point.data), time = str(point.timestamp), previousHash = str(point.prevHash), hashe = point.hashe.hexstring(), senderKey = str(point.sender), recieverKey = str(point.receiver), amount = float(point.amount) )
+	b.save()
+	#take data from point and assign to each column of object of class blockDB
+	#and save this data in db
+	
+   
+	"""
+    
+    if checkValidity() == True:
+    	return True
+    else:
+    	return False
+    
+    
+    
+def checkValidity():
+	

@@ -1,0 +1,12 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <h1 style="margin:25px;">SELL-COINS</h1>
+    <div class="container-fluid acc">
+<form class="site-form" action="{% url 'crypto:sell' %}" method="post">
+  {% csrf_token %}
+   {{form}}
+   <input type="submit" value="Sell">
+</form>
+</div>
+{% endblock %}
