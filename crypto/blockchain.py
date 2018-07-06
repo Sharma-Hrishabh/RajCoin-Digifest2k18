@@ -1,4 +1,4 @@
-# from . import models
+from . import models
 from hashlib import sha256
 import time
 import json
@@ -85,6 +85,9 @@ data = {
 print(json.dumps(data))
 '''
 
+
+blockChain = blockDB.objects.all()
+
 def newNode(dataList):
 	lastBlock = blockDB.objects.order_by('-time')[0]
 	prevHash = lastBlock.hashe
@@ -92,20 +95,39 @@ def newNode(dataList):
 	point.calculateHash()
 	
 	# put "point" into transactions database
-	b = blockDB(data = str(point.data), time = str(point.timestamp), previousHash = str(point.prevHash), hashe = point.hashe.hexstring(), senderKey = str(point.sender), recieverKey = str(point.receiver), amount = float(point.amount) )
-	b.save()
-	#take data from point and assign to each column of object of class blockDB
-	#and save this data in db
+	b = blockDB(data = str(point.data), time = str(point.timestamp), previousHash = str(point.previousHash), hashe = point.hashe.hexstring(), senderKey = str(point.sender), recieverKey = str(point.receiver), amount = float(point.amount) )
 	
-   
-	"""
+	b.save()
+	
+	# checking validity of the chain
     
-    if checkValidity() == True:
+    if checkValidity(point) == True:
     	return True
     else:
     	return False
     
     
     
-def checkValidity():
+def checkValidity(point):
+	# a list that serially stores the hashes
+	fullList = []
+	
+	
+	for i in range(1, len(blockChain[])):
+		previousNode = blockChain[i]
+		currentNode = blockchain[i-1]
+		
+		if not currentNode == point.calculateHash():
+			return False
+		if currentBlock.previousHash == previousNode.hashe:
+			return False  
+			
+	return True
+	
+	
+	
+	
+	
+	#blockDB.objects.all()
+	##blockDB.objects.all()[0].hashe
 	
