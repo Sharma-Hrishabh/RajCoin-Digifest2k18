@@ -1,4 +1,4 @@
-# from . import models.py
+# from . import models
 from hashlib import sha256
 import time
 import json
@@ -81,4 +81,3 @@ data = {
 
 print(json.dumps(data))
 '''
-
