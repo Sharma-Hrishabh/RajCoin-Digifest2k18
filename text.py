@@ -32,4 +32,17 @@ rajcoin(parametres) --------> return json
 data = rajcoin(parametres)
 
 
+
+
+____________________________________________________________________________________
+
+from hashlib import sha256
+
+a = "data goes here"
+
+sha256(a.encode())  -------->>> hash type ka data
+
+hash.hextring()   ---------->>> str
+
+
 __________________________________________json_______________________________________

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from . import blockchain
+from . import blockchain.node
 # from blockchain import newNode
 from . import forms
 import time
@@ -7,7 +7,7 @@ from django.http import HttpResponse
 # Entry.objects.order_by('-headline')[0]
 
 # Create your views here.
-# @login_required(login_url="/accounts/login/")
+@login_required(login_url="/accounts/login/")
 
 def sell_block(request):
     
@@ -23,14 +23,13 @@ def sell_block(request):
             
             # storing form data in a list
             mlist = [str(instance.data), str(instance.amount), str(instance.sender), str(instance.receiver)]
-            
             ret = newNode(mlist)
-            if (ret == true):
+            if (ret == true)
                 # save to databse
                 instance.data
                 instance.save()            #save it
-                return HttpResponse('DB saved')
-            else:
+                return HttpResponse('DB')
+            else
                 # show error
                 return HttpResponse('ERROR')
             # passing data through block class and returning node to node
