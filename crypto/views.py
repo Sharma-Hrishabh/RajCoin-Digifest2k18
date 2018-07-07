@@ -18,11 +18,9 @@ def dashboard(request):
     
 
 
-
-
-
-
-
+def error(errorName):
+    
+    return render(request,'crypto/error.html',{'error':errorName})
 
 
 
@@ -41,18 +39,14 @@ def sell_block(request):
             # storing form data in a list
             mlist = [str(instance.data), str(instance.amount), str(instance.sender), str(instance.receiver)]
             
-            ret = newNode(mlist)
-            if (ret == true):
-                # save to databse
-                instance.data
-                instance.save()            #save it
+            ret = list[newNode(mlist)]  # ret[0] = true /false  ret[1] = error string
+            
+            if (ret[0] == true):
                 return HttpResponse('DB saved')
             else:
-                # show error
-                return HttpResponse('ERROR')
-            # passing data through block class and returning node to node
-            # node = blockchain.block(index=3, mlist[0], time.ctime(), mlist[1], mlist[2], mlist[3], previoushash='')              # index must be no of rows in the transactions list
-            
+                # errorFunc(error parameter)
+                # handle error case with errorFunc
+                error(ret[1])
             
 
     else:
@@ -60,4 +54,7 @@ def sell_block(request):
     
     return render(request,'crypto/sell_block.html',{'form':form})
     
+    
+    
+
     

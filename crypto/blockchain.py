@@ -107,6 +107,10 @@ def newNode(dataList):
 		# add data to original DB
 		tempo = testblockDB(data = str(point.data), time = str(point.timestamp), previousHash = str(point.previousHash), hashe = point.hashe, senderKey = str(point.sender), receiverKey = str(point.receiver), amount = float(point.amount) )
 		RajCoins.addNewNode(tempo)
+		return True, ""
 
 	else:
+		#exception
+		#redirect to error.html
 		
+		return False, "Invalid Transaction"
