@@ -157,7 +157,7 @@ def newNode(dataList):
 # -----------------------------------------------------------------add registration reward-----------------------------------------------------
 def registrationReward(userid):
 	person = userFile()
-	person.userid = md5(str(userid).encode()).hexdigest()			# returning sha64 hashed userid
+	person.userid = md5(str(userid).encode()).hexdigest()			# returning md5 hashed userid
 	
 	data = ["This is a New register Mining Reward by Rajasthan Government!", "10", "Government", userid]
 	
