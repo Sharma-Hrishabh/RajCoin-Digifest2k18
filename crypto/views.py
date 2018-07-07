@@ -38,6 +38,8 @@ def sell_block(request):
             # storing form data in a list
             mlist = [str(instance.data), str(instance.amount), str(instance.senderKey), str(instance.receiverKey)]
             
+            print("mlist = ", mlist)
+            
             ret = list(newNode(mlist))  # ret[0] = true /false  ret[1] = error string
             print(ret)
             if (ret[0]):

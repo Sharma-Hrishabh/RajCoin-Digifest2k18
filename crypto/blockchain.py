@@ -6,6 +6,7 @@ import json
 
 
 
+
 class block:
 	def __init__(self, index, data, timestamp, amount, sender, receiver ,previousHash = ''):
 		self.index = index
@@ -32,7 +33,7 @@ class block:
 
 class blockchain:
 	def __init__(self):
-		chain = blockDB.objects.all()[0]
+		chain = blockDB.objects.all().first()
 
 		if not chain:
 			self.createGenesis()
@@ -40,8 +41,8 @@ class blockchain:
 		self.difficulty = 2
 
 
-	def createGenesis():
-		point = block(0, "This is a Genesis Block", time.ctime(), 0, "GOVERNMENT", "GOVERNMENT" , '')
+	def createGenesis(self):
+		point = block(0, "This is a Genesis Block", time.ctime(), 0, "GOVERNMENT", "GOVERNMENT" ,sha256("genesis".encode()).hexdigest())
 
 		temp = blockDB(data = str(point.data), time = str(point.timestamp), previousHash = str(point.previousHash), hashe = point.hashe, senderKey = str(point.sender), receiverKey = str(point.receiver), amount = float(point.amount) )
 		
@@ -49,7 +50,12 @@ class blockchain:
 	
 	def returnDbCopy(self):
 		originalDB = blockDB.objects.all()
-		return  originalDB
+		testblockDB.objects.all().delete()
+		storevar = testblockDB
+		for objects in originalDB:
+			storevar = objects
+			storevar.save()
+		return  testblockDB.objects.all()
 		
 	def addNewNode(self, temp):
 		node = blockDB()
@@ -59,22 +65,29 @@ class blockchain:
 
 
 # making a copy of blockchain data
-#blockChain = blockDB.objects.all()
+# blockChain = blockDB.objects.all()
 
 # ------------------------------------------------checking validity function -----------------------------------------
 def checkValidity(tempHashes, hashe):
+	
 	
 	for i in range(1, len(tempHashes)):
 		previousNodeHash = tempHashes[i-1]['hashe']
 		currentNodePrevHash  = tempHashes[i]['previousHash']
 		currentNodeHash = tempHashes[i]['hashe']
 		
+		print("Checkvalidity currentHash: ", currentNodeHash)
+		print("checkvalidity currentPrevHash: ", currentNodePrevHash)
+		print("checkvalidity PrevHash: ", previousNodeHash)
 		
 		if not currentNodePrevHash == previousNodeHash:
 			return False
-
-	if not currentNodeHash == hashe:
-			return False
+		else:
+			print("check")
+	
+	
+	#if not currentNodeHash == hashe:
+	#		return False
 
 	return True
 
@@ -86,11 +99,8 @@ def newNode(dataList):
 	RajCoins = blockchain()
 	
 	# making a temporary DB
-	tempDB = testblockDB()
-	tempDB = RajCoins.returnDbCopy()                 # copying blockChain data to new temporary data
-	# tempDB.save()
-	for object in tempDB:
-		object.save()
+	tempDB = RajCoins.returnDbCopy()                 # copying blockChain data to new temporary data temp = tempblockDB.objects,all()
+	
 	
 	
 	lastBlock = blockDB.objects.latest('hashe')
@@ -102,6 +112,8 @@ def newNode(dataList):
 	# saving form Data to block object i.e. a new node
 	point = block(3, dataList[0], time.ctime(), dataList[1], dataList[2], dataList[3], prevHash)  
 	point.hashe = point.calculateHash()
+	
+	print("point = " , dataList)
 	
 	# put "point" into testing database
 	temp = testblockDB(data = str(point.data), time = str(point.timestamp), previousHash = str(point.previousHash), hashe = point.hashe, senderKey = str(point.sender), receiverKey = str(point.receiver), amount = float(point.amount) )
