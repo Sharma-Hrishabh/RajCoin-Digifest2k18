@@ -21,6 +21,7 @@ def signup_view(request):
             
             # adding registration Reward
             temp = request.user
+            print(temp)
             registrationReward(temp)
             
             return redirect('accounts:signup')

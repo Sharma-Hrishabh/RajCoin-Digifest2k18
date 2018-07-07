@@ -60,5 +60,13 @@ git clone https://github.com/Sharma-Hrishabh/digifest2k18
 [for better working use 'digifest2k18' as virtualenv name]
 
 
+## Screenshot of app:
 
- 
+
+
+
+
+
+
+## Understanding Block-Chain:
+![alt text](http://url/to/img.png)
