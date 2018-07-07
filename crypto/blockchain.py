@@ -59,7 +59,14 @@ class blockchain:
 		
 	def addNewNode(self, temp):
 		node = blockDB()
-		node = temp
+		node.data = temp.data
+		node.time = temp.time
+		node.previousHash = temp.previousHash
+		node.hashe = temp.hashe
+		node.senderKey = temp.senderKey
+		node.receiverKey = temp.receiverKey
+		node.amount = temp.amount
+		print("node : " , node)
 		node.save()
 
 
@@ -80,10 +87,12 @@ def checkValidity(tempHashes, hashe):
 		print("checkvalidity currentPrevHash: ", currentNodePrevHash)
 		print("checkvalidity PrevHash: ", previousNodeHash)
 		
+		if currentNodePrevHash == previousNodeHash:
+			print("check")
+		
 		if not currentNodePrevHash == previousNodeHash:
 			return False
-		else:
-			print("check")
+		
 	
 	
 	#if not currentNodeHash == hashe:
