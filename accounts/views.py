@@ -13,7 +13,7 @@ def signup_view(request):
         if form.is_valid():
             instance = form.save(commit=False)
             
-            firstName, lastName = returnFirstLastName()             # authentication Bhamashah Id
+            firstName, lastName = returnFirstLastName(str(request.user))             # authentication Bhamashah Id
             
             instance.first_name = firstName
             instance.last_name = lastName

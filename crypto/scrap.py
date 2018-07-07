@@ -22,9 +22,9 @@ def returnFirstLastName():
     indexName = data.find('"NAME_ENG"')
     string = data[indexName + 12 :]
     indexQuote = string.find('"')
-    name = data[indexName + 12 : indexName + indexQuote + 6] 
+    name = data[indexName + 12 : indexName + indexQuote + 12] 
     
     print(name)
     
     nameComp = name.split()
-    return nameComp[0] , nameComp[-1]           # firstName , lastName = returnFirstLastName()
+    return nameComp[0] , nameComp[-1]           # firstName , lastName = returnFirstLastName()0

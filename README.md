@@ -1,42 +1,67 @@
+#Rajasthan-Hackathon
+##Idea Description :
+Developing RajCoins cryptocurrency system(block-chain) using Bhamashah API where users can transact each other with RajCoins. 
+##Application Background
+##Technical Details
+#Attributes of a user:
+--username(Bhamashah Id)
+--Firstname(extracted using Bhamashah)
+--Lastname(extracted using Bhamashah)
+--Balance
 
-     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
+#Setting up the development environment
+Overview
+In order to run this project on your system, django-framework(ver-1.9) to be setup with python 2.7 
+
+###Prerequisites
+Git Client
+Django - 1.9
+Python - 2.7 or later
+Pip
+VirtualEnvironment
+
+##Setting up virtual env:
+he first thing you will need to do is install pip. If you have setuptools installed, which you most likely will with most modern platforms, you can install pip through easy_install:
+
+easy_install pip
+Next, you'll need to install virtualenv with pip:
+
+pip install virtualenv
+Finally, I would highly recommend installing virtualenvwrapper as it makes it much easier to create and start virtual environments:
+
+pip install virtualenvwrapper
+As part of the install instructions for virtualenvwrapper, you need to add this to your .bash_profile"-
+ # virtualenv
+export WORKON_HOME=$HOME/.virtualenvs
+source /Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenvwrapper.sh
+
+[Please note that this path may differ depending on what version of Python you have. 
+Also, I like to keep all my virtualenvs in a directory called .virtualenvs in my home directory, 
+but this may differ for you if you choose to keep your virtual environments in a different directory.]
+
+Make sure you source your new .bash_profile
+
+source ~/.bash_profile
+...and that's it! Now you're all set to start using virtual environments!
+
+To create and start a new virtual environment with --no-site-packages, enter:
+virtualenv ~/name_of_folder_where_to_create_virtualenv/virtual_env_name
+
+###Activation of virtualenv
+cd ~/name_of_folder_where_to_create_virtualenv/virtual_env_name/bin
+source activate
 
 
-Welcome to your Django project on Cloud9 IDE!
+now at this stage u can install packages like Django here
 
-Your Django project is already fully setup. Just click the "Run" button to start
-the application. On first run you will be asked to create an admin user. You can
-access your application from 'https://digifest2k18-ap0902.c9users.io/' and the admin page from 
-'https://digifest2k18-ap0902.c9users.io/admin'.
+cd ..
+pip install Django
 
-## Starting from the Terminal
+after this clone repositery in current directory
+git clone https://github.com/Sharma-Hrishabh/digifest2k18
 
-In case you want to run your Django application from the terminal just run:
+[for better working use 'digifest2k18' as virtualenv name]
 
-1) Run syncdb command to sync models to database and create Django's default superuser and auth system
 
-    $ python manage.py migrate
 
-2) Run Django
-
-    $ python manage.py runserver $IP:$PORT
-    
-## Configuration
-
-You can configure your Python version and `PYTHONPATH` used in
-Cloud9 > Preferences > Project Settings > Language Support.
-
-## Support & Documentation
-
-Django docs can be found at https://www.djangoproject.com/
-
-You may also want to follow the Django tutorial to create your first application:
-https://docs.djangoproject.com/en/1.9/intro/tutorial01/
-
-Visit http://docs.c9.io for support, or to learn more about using Cloud9 IDE.
-To watch some training videos, visit http://www.youtube.com/user/c9ide
+ 

@@ -31,12 +31,15 @@
 			<link rel="stylesheet" href="{% static 'css/main.css' %}">
 		</head>
 		<body>
+	
+
+
 
 			  <header id="header" id="home">
 			    <div class="container">
 			    	<div class="row align-items-center justify-content-between d-flex">
 				      <div id="logo">
-				        <a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
+				        <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="" title="" /></a>
 				      </div>
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu">
@@ -68,6 +71,11 @@
 			    	</div>
 			    </div>
 			  </header><!-- #header -->
+             
+            
+             
+            
+
 
 			<!-- start banner Area -->
 			<section class="banner-area relative" id="home">
@@ -102,14 +110,14 @@
 							</p>
 						</div>
 						<div class="col-lg-4 single-services">
-							<img src="img/s2.png" alt="">
+							<img src="{% static 'img/s2.png' %}" alt="">
 							<a href="#"><h4 class="pt-30 pb-20">Rajcoin Exchange Analysis</h4></a>
 							<p>
 								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation.
 							</p>
 						</div>
 						<div class="col-lg-4 single-services">
-							<img src="img/s3.png" alt="">
+							<img src="{% static 'img/s3.png' %}" alt="">
 							<a href="#"><h4 class="pt-30 pb-20">Send & Receive Rajcoin</h4></a>
 							<p>
 								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation.
@@ -127,10 +135,10 @@
 					<div class="row d-flex align-items-center">
 						<div class="col-lg-6 aboutus-left no-padding">
 							<div class="active-about-carusel">
-								<img class="img-fluid item" src="img/about-img.jpg" alt="">
-								<img class="img-fluid item" src="img/about-img.jpg" alt="">
-								<img class="img-fluid item" src="img/about-img.jpg" alt="">
-								<img class="img-fluid item" src="img/about-img.jpg" alt="">
+								<img class="img-fluid item" src="{% static 'img/about-img.jpg' %}" alt="">
+								<img class="img-fluid item" src="{% static 'img/about-img.jpg' %}" alt="">
+								<img class="img-fluid item" src="{% static 'img/about-img.jpg' %}" alt="">
+								<img class="img-fluid item" src="{% static 'img/about-img.jpg' %}" alt="">
 							</div>
 						</div>
 						<div class="col-lg-6 aboutus-right no-padding">
@@ -215,25 +223,7 @@
 			<!-- End service Area -->		
 						
 
-			<!-- Start stat Area -->
-			<section class="stat-area section-gap">
-				<div class="container">
-					<div class="row justify-content-center align-items-center">
-						<div class="col-lg-6 stat-left">
-							<img class="img-fluid" src="{% static 'img/chart.png' %}" alt="">
-						</div>
-						<div class="col-lg-6 stat-right">
-							<h1>Ups and Downs <br>
-							of Bitcoin (Realtime)</h1>
-							<p class="pt-20 pb-20">
-								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that.
-							</p>
-							<a href="#" class="primary-btn header-btn text-uppercase">View Details</a>
-						</div>
-					</div>
-				</div>	
-			</section>
-			<!-- End stat Area -->
+		
 			
 
 			<!-- Start callaction Area -->
@@ -246,7 +236,7 @@
 								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore
 								magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
 							</p>
-							<a href="#" class="primary-btn">Buy Bitcoin Now!</a>							
+							<a href="#" class="primary-btn">Buy Rajcoin Now!</a>							
 						</div>
 					</div>
 				</div>	
@@ -254,71 +244,8 @@
 			<!-- End callaction Area -->
 			
 
-			<!-- Start price Area -->
-			<section class="price-area pt-100" id="price">
-				<div class="container">
-					<div class="row d-flex justify-content-center">
-						<div class="menu-content pb-60 col-lg-8">
-							<div class="title text-center">
-								<h1 class="mb-10">Purchase whatever you want</h1>
-								<p>Who are in extremely love with eco friendly system.</p>
-							</div>
-						</div>
-					</div>						
-					<div class="row">
-						<div class="col-lg-4">
-							<div class="single-price no-padding">
-								<div class="price-top">
-									<h4>01 Ripple</h4>
-								</div>
-								<p>
-									Who are in extremely love with <br>
-									eco friendly system.
-								</p>
-								<div class="price-bottom">
-									<h1><span>$</span> 7999</h1>
-									<a href="#" class="primary-btn header-btn">Get Started</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-price no-padding">
-								<div class="price-top">
-									<h4>01 Ethereum</h4>
-								</div>
-								<p>
-									Who are in extremely love with <br>
-									eco friendly system.
-								</p>
-								<div class="price-bottom">
-									<h1><span>$</span> 9999</h1>
-									<a href="#" class="primary-btn header-btn">Get Started</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-price no-padding">
-								<div class="price-top">
-									<h4>01 Bitcoin</h4>
-								</div>
-								<p>
-									Who are in extremely love with <br>
-									eco friendly system.
-								</p>
-								<div class="price-bottom">
-									<h1><span>$</span> 5999</h1>
-									<a href="#" class="primary-btn">Get Started</a>
-								</div>
-							</div>				
-						</div>								
-					</div>
-				</div>	
-			</section>
-			<!-- End price Area -->
-		
+			
 
-			<!-- Start blog Area -->
-				<!-- End blog Area -->
 					
 
 			<!-- start footer Area -->		

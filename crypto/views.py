@@ -4,7 +4,10 @@ from . import forms
 import time
 from django.http import HttpResponse
 from django.contrib.auth.models import User   #user info
-# Entry.objects.order_by('-headline')[0]
+
+from .models import userFile
+
+from hashlib import md5
 
 # Create your views here.
 # @login_required(login_url="/accounts/login/")
@@ -23,8 +26,17 @@ def error(errorName):
     
 
 # -------------------------------------------------------------updating Data Function----------------------------------------------
-#def updateBalance(amount):
-    
+def updateBalance(userid_, amount):
+    usermd5 = md5(str(userid_).encode()).hexdigest()
+    print("usermd5 = ",usermd5)
+    # person = userFile.objects.all().filter(userid=usermd5)                 # return object with userid md5(userid.encode().hexstring
+    userfile = userFile.objects.get(userid=usermd5)
+    userfile.amount += amount
+    userFile.objects.filter(userid=usermd5).update(lastMod = time.ctime())
+	
+    #Survey.objects.filter(pk=survey.pk).update(active=True)
+	# updating new user's record
+# 	person.save()
 
 
 # ----------------------------------------------------------updating Data Function ends--------------------------------------------
@@ -46,13 +58,13 @@ def sell_block(request):
             # storing form data in a list
             mlist = [str(instance.data), str(instance.amount), str(instance.senderKey), str(instance.receiverKey)]
             
-            print("mlist = ", mlist)
+            # print("mlist = ", mlist)
             
             ret = list(newNode(mlist))  # ret[0] = true /false  ret[1] = error string
             print(ret)
             if (ret[0]):
+                updateBalance(request.user, float(instance.amount))
                 return HttpResponse('DB saved')
-                # update Balance
             else:
                 # errorFunc(error parameter)
                 # handle error case with errorFunc

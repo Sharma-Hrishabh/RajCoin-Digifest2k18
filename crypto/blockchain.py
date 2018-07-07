@@ -94,9 +94,9 @@ def checkValidity(tempHashes, hashe):
 		currentNodePrevHash  = tempHashes[i]['previousHash']
 		currentNodeHash = tempHashes[i]['hashe']
 		
-		print("Checkvalidity currentnodeHash: ", currentNodeHash)
-		print("checkvalidity currentnodePrevHash: ", currentNodePrevHash)
-		print("checkvalidity PrevnodeHash: ", previousNodeHash)
+		# print("Checkvalidity currentnodeHash: ", currentNodeHash)
+		# print("checkvalidity currentnodePrevHash: ", currentNodePrevHash)
+		# print("checkvalidity PrevnodeHash: ", previousNodeHash)
 		
 		
 		if not currentNodePrevHash == previousNodeHash:
@@ -123,7 +123,6 @@ def newNode(dataList):
 	#  tempDB.latest().all().latest('vfb')
 	lastBlock = tempDB.objects.latest('id')
 	
-	print(lastBlock)
 	if not lastBlock:
 		raise Exception('empty Empty!')
 	else:
@@ -133,7 +132,7 @@ def newNode(dataList):
 	point = block(3, dataList[0], time.ctime(), dataList[1], dataList[2], dataList[3], prevHash)  
 	point.hashe = point.calculateHash()
 	
-	print("point = " , dataList)
+	# print("point = " , dataList)
 	
 	# put "point" into testing database
 	temp = testblockDB(data = str(point.data), time = str(point.timestamp), previousHash = str(point.previousHash), hashe = point.hashe, senderKey = str(point.sender), receiverKey = str(point.receiver), amount = float(point.amount) )
