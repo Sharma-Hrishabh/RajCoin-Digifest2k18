@@ -69,4 +69,4 @@ git clone https://github.com/Sharma-Hrishabh/digifest2k18
 
 
 ## Understanding Block-Chain:
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/Sharma-Hrishabh/digifest2k18/blob/master/dbsnap.jpeg)
