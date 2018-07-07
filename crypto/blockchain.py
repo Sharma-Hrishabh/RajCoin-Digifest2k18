@@ -42,20 +42,32 @@ class blockchain:
 
 
 	def createGenesis(self):
-		point = block(0, "This is a Genesis Block", time.ctime(), 0, "GOVERNMENT", "GOVERNMENT" ,sha256("genesis".encode()).hexdigest())
+		point = block(0, "This is a Genesis Block", time.ctime(), 0, "GOVERNMENT", "GOVERNMENT" ,"000000")
 
 		temp = blockDB(data = str(point.data), time = str(point.timestamp), previousHash = str(point.previousHash), hashe = point.hashe, senderKey = str(point.sender), receiverKey = str(point.receiver), amount = float(point.amount) )
 		
 		temp.save()
 	
+
+	
 	def returnDbCopy(self):
-		originalDB = blockDB.objects.all()
+		
+		tempData = blockDB.objects.all()
 		testblockDB.objects.all().delete()
-		storevar = testblockDB
-		for objects in originalDB:
-			storevar = objects
-			storevar.save()
-		return  testblockDB.objects.all()
+		
+		for temp in tempData:
+			node = testblockDB()
+			
+			node.data = temp.data
+			node.time = temp.time
+			node.previousHash = temp.previousHash
+			node.hashe = temp.hashe
+			node.senderKey = temp.senderKey
+			node.receiverKey = temp.receiverKey
+			node.amount = temp.amount
+			node.save()
+		
+		return testblockDB
 		
 	def addNewNode(self, temp):
 		node = blockDB()
@@ -70,7 +82,6 @@ class blockchain:
 		node.save()
 
 
-
 # making a copy of blockchain data
 # blockChain = blockDB.objects.all()
 
@@ -83,12 +94,10 @@ def checkValidity(tempHashes, hashe):
 		currentNodePrevHash  = tempHashes[i]['previousHash']
 		currentNodeHash = tempHashes[i]['hashe']
 		
-		print("Checkvalidity currentHash: ", currentNodeHash)
-		print("checkvalidity currentPrevHash: ", currentNodePrevHash)
-		print("checkvalidity PrevHash: ", previousNodeHash)
+		print("Checkvalidity currentnodeHash: ", currentNodeHash)
+		print("checkvalidity currentnodePrevHash: ", currentNodePrevHash)
+		print("checkvalidity PrevnodeHash: ", previousNodeHash)
 		
-		if currentNodePrevHash == previousNodeHash:
-			print("check")
 		
 		if not currentNodePrevHash == previousNodeHash:
 			return False
@@ -111,8 +120,10 @@ def newNode(dataList):
 	tempDB = RajCoins.returnDbCopy()                 # copying blockChain data to new temporary data temp = tempblockDB.objects,all()
 	
 	
+	#  tempDB.latest().all().latest('vfb')
+	lastBlock = tempDB.objects.latest('id')
 	
-	lastBlock = blockDB.objects.latest('hashe')
+	print(lastBlock)
 	if not lastBlock:
 		raise Exception('empty Empty!')
 	else:

@@ -1,263 +1,90 @@
-from .models import blockDB
-from hashlib import sha256
-import time
-import json
-
-
-
-class block:
-	def __init__(self, index, data, timestamp, amount, sender, receiver ,previousHash = ''):
-		selffrom .models import blockDB
-from hashlib import sha256
-import time
-import json
-
-
-
-class block:
-	def __init__(self, index, data, timestamp, amount, sender, receiver ,previousHash = ''):
-		self.index = index
-		self.data  = data
-		self.previousHash = previousHash
-		self.amount = amount
-		self.sender = sender
-		self.receiver = receiver
-		self.timestamp = timestamp
-		self.nonce = 0
-		self.hashe = ''
-		
-		
-	def calculateHash(self):
-		# returning hash for a set of data
-		return sha256((str(self.index) + str(self.data) + str(self.amount) + str(self.sender) + str(self.receiver) 
-					+ str(self.timestamp) + str(self.nonce) + str(self.previousHash)).encode()).hexdigest()
-
-	#def mineBlock(self, difficulty):
-	#	codeHash = str(self.hashe)[0:difficulty]
-	#	while not codeHash == "0"*difficulty:
-	#		self.nonce += 1 
-
-
-class blockchain:
-	def __init__(self):
-		self.chain = [self.createGenesis()]
-		self.difficulty = 2
-
-	def createGenesis(self):
-		return block(0 , "Created a genesis Block", time.ctime(), 10 , 'Govenment', 'Govenment', "0")
-
-	def getLatestBlock(self):
-		return self.chain[-1]
-
-	def addBlock(self, newBlock):
-		newBlock.previousHash = self.getLatestBlock().hashe
-		newBlock.hashe = newBlock.calculateHash()
-		self.chain.append(newBlock)
-
-	def isChainValid(self):
-		for i in range(1, len(self.chain) - 1):
-			previousNode = self.chain[i-1]
-			currentNode = self.chain[i]
-
-		if not currentNode.hashe == currentNode.calculateHash():
-			return False
-
-		if not previousNode.hashe == currentNode.previousHash:
-			return False
-
-		return True
-
-
-crypto = blockchain()
-
-# mining and printing JSON for block 1
-crypto.addBlock(block(1, "First User added", time.ctime(), 10, "GOVERNMENT", "first_user" ,) )
-lastNode = crypto.getLatestBlock()
-
-
-
-point = block(1, "First User added", time.ctime(), 10, "GOVERNMENT", "first_user" , sha256(a.encode()).hexdigest())
-
-
-# code that copies original db into testdb
-testblockDB.objects.all.delete()
-tempDB = testblockDB()
-tempDB = blockDB.objects.all()
-tempDB.save()
-
-
-b = testblockDB(data = str(point.data), time = str(point.timestamp), previousHash = str(point.previousHash), hashe = point.hashe, senderKey = str(point.sender), receiverKey = str(point.receiver), amount = float(point.amount) )
-#b = blockDB.objects.create(data = "hdhfjf", time = "2018-11-01", previousHash = "baca", hashe = "hdfjf", senderKey = "hfhjg", receiverKey = "hfjjf", amount = 0.0 )
-
-b.save()
-
-if checkValidity(point):
-	
-	
-
-print("-------> Block 1 Mined.......")
-
-print(lastNode.hashe)
-
-
-'''
-data = {
-	'index'	: lastNode.index,
-	'data'	: lastNode.data,
-	'previousHash' : lastNode.previousHash.hexdigest(),
-	'currentBlock' : lastNode.hashe.hexdigest(),
-	
-	'sender'	:	lastNode.sender,
-	'receiver'	:	lastNode.receiver,
-	'time'		: 	lastNode.timestamp,
+{
+    "hof_Details": {
+        "AADHAR_ID": "734094301964",
+        "STATE": "Rajasthan",
+        "MOTHER_NAME_ENG": "ratna devi",
+        "DOB": "01-JAN-88",
+        "BHAMASHAH_ID": "1067-7PVQ-28383",
+        "VILLAGE_CODE": "078167",
+        "RSBY_STATUS": "N",
+        "STREET": "ward 5",
+        "M_ID": "0",
+        "FAMILYIDNO": "WDDQMOW",
+        "FATHER_NAME_HND": "प्यारेलाल ",
+        "PIN_CODE": "321608",
+        "GP_WARD": "0810905420",
+        "DISTRICT_CODE": "109",
+        "SPOUCE_NAME_ENG": "dhoojiram gurjar",
+        "IS_RURAL": "Y",
+        "HOUSE_NUMBER": null,
+        "SPOUCE_NAME_HND": "धूजीराम गुर्जर ",
+        "RSBY_URN_NUMBER": null,
+        "NFSA_STATUS": "Y",
+        "NFSA_BPL_NUMBER": null,
+        "RATION_CARD_NO": "007816701259",
+        "NAME_ENG": "mundar devi gurjar",
+        "GENDER": "Female",
+        "FATHER_NAME_ENG": "pyarelal",
+        "NAME_HND": "मुन्दर देवी गुर्जर ",
+        "MOTHER_NAME_HND": "रत्ना देवी ",
+        "BLOCK_CITY": "0810905"
+    },
+    "family_Details": [
+        {
+            "AADHAR_ID": "766565486298",
+            "M_ID": "4878417",
+            "MOTHER_NAME_ENG": "mundar devi gurjar",
+            "FATHER_NAME_HND": "धूजीराम गुर्जर ",
+            "DOB": "01-JUN-06",
+            "NAME_ENG": "vedprakash rawat",
+            "GENDER": "Male",
+            "FATHER_NAME_ENG": "dhoojiram gurjar",
+            "SPOUCE_NAME_ENG": " ",
+            "NAME_HND": "वेदप्रकाश रावत ",
+            "SPOUCE_NAME_HND": " ",
+            "MOTHER_NAME_HND": "मुन्दर देवी गुर्जर "
+        },
+        {
+            "AADHAR_ID": "796668014335",
+            "M_ID": "4878418",
+            "MOTHER_NAME_ENG": "mundar devi gurjar",
+            "FATHER_NAME_HND": "धूजीराम गुर्जर ",
+            "DOB": "03-JUL-08",
+            "NAME_ENG": "madanmohan rawat",
+            "GENDER": "Male",
+            "FATHER_NAME_ENG": "dhoojiram gurjar",
+            "SPOUCE_NAME_ENG": " ",
+            "NAME_HND": "मदनमोहन रावत ",
+            "SPOUCE_NAME_HND": " ",
+            "MOTHER_NAME_HND": "मुन्दर देवी गुर्जर "
+        },
+        {
+            "AADHAR_ID": "388038964343",
+            "M_ID": "4878416",
+            "MOTHER_NAME_ENG": "suaa devi",
+            "FATHER_NAME_HND": "हरीसिंह गुर्जर ",
+            "DOB": "02-JUL-83",
+            "NAME_ENG": "dhoojiram gurjar",
+            "GENDER": "Male",
+            "FATHER_NAME_ENG": "harisingh gurjar",
+            "SPOUCE_NAME_ENG": "mundar devi gurjar",
+            "NAME_HND": "धूजीराम गुर्जर  ",
+            "SPOUCE_NAME_HND": "मुन्दर देवी गुर्जर ",
+            "MOTHER_NAME_HND": "सुआ देवी "
+        },
+        {
+            "AADHAR_ID": "447306886787",
+            "M_ID": "4878419",
+            "MOTHER_NAME_ENG": "jhuniya",
+            "FATHER_NAME_HND": "कजोड़या",
+            "DOB": "01-JAN-52",
+            "NAME_ENG": "harisingh gurjar",
+            "GENDER": "Male",
+            "FATHER_NAME_ENG": "kajodya",
+            "SPOUCE_NAME_ENG": "suaa devi",
+            "NAME_HND": "हरीसिंह गुर्जर ",
+            "SPOUCE_NAME_HND": "सुआ देवी",
+            "MOTHER_NAME_HND": "झुनिया"
+        }
+    ]
 }
-
-print(json.dumps(data))
-'''
-
-
-blockChain = testblockDB.objects.all()
-
-def newNode(dataList):
-	
-	lastBlock = blockDB.objects.order_by('-time')[0]
-	prevHash = lastBlock.hashe
-	
-	point = block(3, dataList[0], time.ctime(), dataList[1], dataList[2], dataList[3], prevHash)  
-	point.calculateHash()
-	
-	# put "point" into transactions database
-	b = blockDB(data = str(point.data), time = str(point.timestamp), previousHash = str(point.previousHash), hashe = point.hashe, senderKey = str(point.sender), receiverKey = str(point.receiver), amount = float(point.amount) )
-	# b=blockDB(data = "hdhfjf", time = "2018-11-01 00:00:00", previousHash = "baca", hashe = "hdfjf", senderKey = "hfhjg", receiverKey = "str(point.receiver)", amount = 0.0 )
-	re = b.save()
-	print(re)
-	# checking validity of the chain
-	
-	if checkValidity(point) == True:
-		blockDB.objects.all.delete()
-		tempDB = blockDB()
-		tempDB = testblockDB.objects.all()
-		tempDB.save()
-		testblockDB.objects.all.delete()
-		return True
-	else:
-		return False
-    
-    
-    
-def checkValidity(point):
-	
-	for i in range(1, len(blockChain)):
-		previousNode = blockChain[i]
-		currentNode = blockChain[i-1]
-		
-		if not currentNode == point.calculateHash():
-			return False
-		if currentBlock.previousHash == previousNode.hashe:
-			return False  
-			
-	return True
-	
-	
-	
-	
-	
-	#blockDB.objects.all()
-	##blockDB.objects.all()[0].hashe
-	.index = index
-		self.data  = data
-		self.previousHash = previousHash
-		self.amount = amount
-		self.sender = sender
-		self.receiver = receiver
-		self.timestamp = timestamp
-		self.nonce = 0
-		self.hashe = ''
-		
-		
-	def calculateHash(self):
-		# returning hash for a set of data
-		return sha256((str(self.index) + str(self.data) + str(self.amount) + str(self.sender) + str(self.receiver) 
-					+ str(self.timestamp) + str(self.nonce) + str(self.previousHash)).encode()).hexdigest()
-
-	#def mineBlock(self, difficulty):
-	#	codeHash = str(self.hashe)[0:difficulty]
-	#	while not codeHash == "0"*difficulty:
-	#		self.nonce += 1 
-
-
-class blockchain:
-	def __init__(self):
-		self.chain = [self.createGenesis()]
-		self.difficulty = 2
-
-	def createGenesis(self):
-		return block(0 , "Created a genesis Block", time.ctime(), 10 , 'Govenment', 'Govenment', "0")
-
-	def getLatestBlock(self):
-		return self.chain[-1]
-
-	def addBlock(self, newBlock):
-		newBlock.previousHash = self.getLatestBlock().hashe
-		newBlock.hashe = newBlock.calculateHash()
-		self.chain.append(newBlock)
-
-	def isChainValid(self):
-		for i in range(1, len(self.chain) - 1):
-			previousNode = self.chain[i-1]
-			currentNode = self.chain[i]
-
-		if not currentNode.hashe == currentNode.calculateHash():
-			return False
-
-		if not previousNode.hashe == currentNode.previousHash:
-			return False
-
-		return True
-		
-
-# making a copy of blockchain data
-#blockChain = blockDB.objects.all()
-
-def checkValidity(point):
-	
-	checkDBlist = testblockDB.objects.all()
-	
-	for i in range(1, len(blockChain)):
-		previousNode = blockChain[i]
-		currentNode = blockChain[i-1]
-		
-		if not currentNode == point.calculateHash():
-			return False
-		if currentBlock.previousHash == previousNode.hashe:
-			return False  
-			
-	return True
-	
-		
-		
-def newNode(dataList):
-	
-	# making a temporary DB
-	tempDB = testblockDB()
-	tempDB = blockDB.objects.all()                 # copying blockChain data to new temporary data
-	tempDB.save()
-	
-	
-	lastBlock = testblockDB.objects.order_by('-time')[0]
-	prevHash = lastBlock.hashe
-	
-	# saving form Data to block object i.e. a new node
-	point = block(3, dataList[0], time.ctime(), dataList[1], dataList[2], dataList[3], prevHash)  
-	point.hashe = point.calculateHash()
-	
-	# put "point" into testing database
-	b = testblockDB(data = str(point.data), time = str(point.timestamp), previousHash = str(point.previousHash), hashe = point.hashe, senderKey = str(point.sender), receiverKey = str(point.receiver), amount = float(point.amount) )
-	b.save()        # adding block to temporary DB
-	
-	tempDB = testblockDB.objects.all()
-	if checkValidity(tempDB) == True:
-		return True
-	else:
-		return False
-    
