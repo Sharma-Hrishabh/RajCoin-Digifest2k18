@@ -88,3 +88,40 @@
         }
     ]
 }
+
+
+
+
+
+
+https://apitest.sewadwaar.rajasthan.gov.in/app/live/Service/family/details/1067-7PVQ-28383?client_id=ad7288a4-7764-436d-a727-783a977f1fe1
+
+
+
+#for python3
+import requests
+import json
+
+def main():
+    r=requests.get("https://apitest.sewadwaar.rajasthan.gov.in/app/live/Service/family/details/1067-7PVQ-28383?client_id=ad7288a4-7764-436d-a727-783a977f1fe1")
+    if r.status_code != 200:
+        raise Exception("ERROR")
+data =r.json()
+print(data)
+
+if __name__ == "__main__":
+    main()
+
+#for python2
+import urllib.request, json
+with urllib.request.urlopen("") as url:
+    data = json.loads(url.read().decode())
+    print(data)
+
+
+
+
+
+
+
+

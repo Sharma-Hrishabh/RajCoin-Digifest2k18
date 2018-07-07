@@ -3,7 +3,7 @@ from .blockchain import newNode
 from . import forms
 import time
 from django.http import HttpResponse
-from django.contrib.auth.models import User   #user info
+from django.contrib.auth.models import user   #user info
 # Entry.objects.order_by('-headline')[0]
 
 # Create your views here.
@@ -20,6 +20,14 @@ def dashboard(request):
 def error(errorName):
     return HttpResponse(errorName)
     #return render(null,'crypto/error.html',{'error':errorName})
+    
+
+# -------------------------------------------------------------updating Data Function----------------------------------------------
+def updateBalance():
+    
+
+
+# ----------------------------------------------------------updating Data Function ends--------------------------------------------
 
 
 
@@ -44,6 +52,7 @@ def sell_block(request):
             print(ret)
             if (ret[0]):
                 return HttpResponse('DB saved')
+                # update Balance
             else:
                 # errorFunc(error parameter)
                 # handle error case with errorFunc
