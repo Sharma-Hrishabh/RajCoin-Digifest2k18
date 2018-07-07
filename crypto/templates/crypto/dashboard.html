@@ -1,0 +1,17 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <h1 style="margin:25px;">Dashboard</h1>
+    <div class="container-fluid ">
+     <span>Name Of User{{curr_user}}</span>
+    <div class="personal-info">
+    </div>
+    <div class="buttons">
+   <a href="{% url 'crypto:sell' %}" class="btn btn-info" role="button">Sell Rajcoins</a> 
+    </div>
+    <!--required transaction table -->
+            
+        
+        
+    </div>
+{% endblock %}

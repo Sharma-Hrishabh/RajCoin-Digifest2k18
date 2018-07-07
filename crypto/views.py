@@ -4,10 +4,27 @@ from . import blockchain
 from . import forms
 import time
 from django.http import HttpResponse
+from django.contrib.auth.models import User   #user info
 # Entry.objects.order_by('-headline')[0]
 
 # Create your views here.
 # @login_required(login_url="/accounts/login/")
+def dashboard(request):
+    curr_user = request.user
+    
+    
+    
+    return render(request,'dashboard.html',{'curr_user':curr_user})
+    
+
+
+
+
+
+
+
+
+
 
 def sell_block(request):
     

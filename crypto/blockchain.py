@@ -15,7 +15,7 @@ class block:
 		self.receiver = receiver
 		self.timestamp = timestamp
 		self.nonce = 0
-		self.hashe = ''
+		self.hashe = self.calculateHash()
 		
 		
 	def calculateHash(self):
@@ -31,113 +31,82 @@ class block:
 
 class blockchain:
 	def __init__(self):
-		self.chain = [self.createGenesis()]
+		chain = blockDB.objects[0]
+
+		if not chain:
+			self.createGenesis(self)
+
 		self.difficulty = 2
 
+
 	def createGenesis(self):
-		return block(0 , "Created a genesis Block", time.ctime(), 10 , 'Govenment', 'Govenment', "0")
+		point = block(0, "This is a Genesis Block", time.ctime(), 0, "GOVERNMENT", "GOVERNMENT" , sha256(a.encode()).hexdigest())
 
-	def getLatestBlock(self):
-		return self.chain[-1]
-
-	def addBlock(self, newBlock):
-		newBlock.previousHash = self.getLatestBlock().hashe
-		newBlock.hashe = newBlock.calculateHash()
-		self.chain.append(newBlock)
-
-	def isChainValid(self):
-		for i in range(1, len(self.chain) - 1):
-			previousNode = self.chain[i-1]
-			currentNode = self.chain[i]
-
-		if not currentNode.hashe == currentNode.calculateHash():
-			return False
-
-		if not previousNode.hashe == currentNode.previousHash:
-			return False
-
-		return True
-
-
-crypto = blockchain()
-
-# mining and printing JSON for block 1
-crypto.addBlock(block(1, "First User added", time.ctime(), 10, "GOVERNMENT", "first_user" ) )
-lastNode = crypto.getLatestBlock()
-
-
-point = block(1, "First User added", time.ctime(), 10, "GOVERNMENT", "first_user" )
-
-b = blockDB(data = str(point.data), time = str(point.timestamp), previousHash = str(point.previousHash), hashe = point.hashe, senderKey = str(point.sender), receiverKey = str(point.receiver), amount = float(point.amount) )
-#b = blockDB.objects.create(data = "hdhfjf", time = "2018-11-01", previousHash = "baca", hashe = "hdfjf", senderKey = "hfhjg", receiverKey = "hfjjf", amount = 0.0 )
-
-b.save()
-
-print("-------> Block 1 Mined.......")
-
-print(lastNode.hashe)
-
-
-'''
-data = {
-	'index'	: lastNode.index,
-	'data'	: lastNode.data,
-	'previousHash' : lastNode.previousHash.hexdigest(),
-	'currentBlock' : lastNode.hashe.hexdigest(),
+		temp = blockDB(data = str(point.data), time = str(point.timestamp), previousHash = str(point.previousHash), hashe = point.hashe, senderKey = str(point.sender), receiverKey = str(point.receiver), amount = float(point.amount) )
+		
+		temp.save()
 	
-	'sender'	:	lastNode.sender,
-	'receiver'	:	lastNode.receiver,
-	'time'		: 	lastNode.timestamp,
-}
+	def returnDbCopy(self):
+		originalDB = blockDB.objects.all()
+		return  originalDB
+		
+	def addNewNode(self, temp):
+		node = blockDB()
+		node = temp
+		node.save()
 
-print(json.dumps(data))
-'''
+		
+
+# making a copy of blockchain data
+#blockChain = blockDB.objects.all()
 
 
-blockChain = blockDB.objects.all()
+def checkValidity(tempHashes, point.hashe):
+	
+	for i in range(1, len(tempHashes)):
+		previousNodeHash = tempHashes[i-1].hashe
+		currentNodePrevHash  = tempHashes[i].previousHash
+		currentNodeHash = tempHashes[i].hashe
+		
+		
+		if not currentNodePrevHash == previousNodeHash:
+			return False
 
+	if not currentNodeHash == point.hashe:
+			return False
+
+	return True
+
+		
 def newNode(dataList):
 	
-	lastBlock = blockDB.objects.order_by('-time')[0]
+	RajCoins = blockChain()
+
+	# making a temporary DB
+	tempDB = testblockDB()
+	tempDB = RajCoins.returnDbCopy()                 # copying blockChain data to new temporary data
+	tempDB.save()
+	
+	
+	lastBlock = testblockDB.objects.order_by('-time')[0]
 	prevHash = lastBlock.hashe
 	
+	# saving form Data to block object i.e. a new node
 	point = block(3, dataList[0], time.ctime(), dataList[1], dataList[2], dataList[3], prevHash)  
-	point.calculateHash()
+	point.hashe = point.calculateHash()
 	
-	# put "point" into transactions database
-	# b = blockDB(data = str(point.data), time = str(point.timestamp), previousHash = str(point.previousHash), hashe = point.hashe, senderKey = str(point.sender), receiverKey = str(point.receiver), amount = float(point.amount) )
-	b=blockDB(data = "hdhfjf", time = "2018-11-01 00:00:00", previousHash = "baca", hashe = "hdfjf", senderKey = "hfhjg", receiverKey = "str(point.receiver)", amount = 0.0 )
-	re = b.save()
-	print(re)
-	# checking validity of the chain
+	# put "point" into testing database
+	temp = testblockDB(data = str(point.data), time = str(point.timestamp), previousHash = str(point.previousHash), hashe = point.hashe, senderKey = str(point.sender), receiverKey = str(point.receiver), amount = float(point.amount) )
 	
-	if checkValidity(point) == True:
-		return True
+	temp.save()
+
+	# putting previous and current node hashes of all rows in testblockDB into a list
+	temp = testblockDB.objects.values('previousHash', 'hashe')
+
+	if checkValidity(temp, point.hashe):
+		# add data to original DB
+		tempo = testblockDB(data = str(point.data), time = str(point.timestamp), previousHash = str(point.previousHash), hashe = point.hashe, senderKey = str(point.sender), receiverKey = str(point.receiver), amount = float(point.amount) )
+		RajCoins.addNewNode(tempo)
+
 	else:
-		return False
-    
-    
-    
-def checkValidity(point):
-	# a list that serially stores the hashes
-	fullList = []
-	
-	
-	for i in range(1, len(blockChain)):
-		previousNode = blockChain[i]
-		currentNode = blockchain[i-1]
 		
-		if not currentNode == point.calculateHash():
-			return False
-		if currentBlock.previousHash == previousNode.hashe:
-			return False  
-			
-	return True
-	
-	
-	
-	
-	
-	#blockDB.objects.all()
-	##blockDB.objects.all()[0].hashe
-	
