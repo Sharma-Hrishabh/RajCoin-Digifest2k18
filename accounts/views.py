@@ -2,16 +2,34 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import login,logout
 from django.http import HttpResponse
+from .scrap import returnFirstLastName
+from crypto.blockchain import registrationReward
 
 def signup_view(request):
+    
     if request.method=='POST':
         form = UserCreationForm(request.POST)
+        
         if form.is_valid():
-            user = form.save()
-           
+            instance = form.save(commit=False)
+            
+            firstName, lastName = returnFirstLastName()             # authentication Bhamashah Id
+            
+            instance.first_name = firstName
+            instance.last_name = lastName
+            instance.save()                 # saving instance
+            
+            # adding registration Reward
+            temp = request.user
+            registrationReward(temp)
+            
             return redirect('accounts:signup')
+            
+            
     else:
         form = UserCreationForm
+    
+    
     return render(request,'accounts/signup.html',{'form':form})
 
 

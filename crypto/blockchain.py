@@ -1,6 +1,6 @@
 from .models import blockDB
-from .models import testblockDB
-from hashlib import sha256
+from .models import testblockDB, userFile
+from hashlib import sha256, md5
 import time
 import json
 
@@ -155,3 +155,19 @@ def newNode(dataList):
 		return False, "Invalid Transaction"
 		
 		
+# -----------------------------------------------------------------add registration reward-----------------------------------------------------
+def registrationReward(userid):
+	person = userFile()
+	person.userid = md5(str(userid).encode()).hexdigest()			# returning sha64 hashed userid
+	
+	data = ["This is a New register Mining Reward by Rajasthan Government!", "10", "Government", userid]
+	
+	# mining new user 
+	newNode(data)
+	
+	person.balance = (person.balance + 10.0 )
+	person.lastMod = time.ctime()
+	
+	
+	# updating new user's record
+	person.save()

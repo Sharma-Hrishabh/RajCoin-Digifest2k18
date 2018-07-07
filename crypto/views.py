@@ -3,7 +3,7 @@ from .blockchain import newNode
 from . import forms
 import time
 from django.http import HttpResponse
-from django.contrib.auth.models import user   #user info
+from django.contrib.auth.models import User   #user info
 # Entry.objects.order_by('-headline')[0]
 
 # Create your views here.
@@ -23,7 +23,7 @@ def error(errorName):
     
 
 # -------------------------------------------------------------updating Data Function----------------------------------------------
-def updateBalance():
+#def updateBalance(amount):
     
 
 

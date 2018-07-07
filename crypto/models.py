@@ -12,6 +12,7 @@ class blockDB(models.Model):
     senderKey       = models.CharField(max_length = 50)
     receiverKey     = models.CharField(max_length = 50)
     amount          = models.FloatField(default = 0.0)
+    
 
 class testblockDB(models.Model):
     data            = models.TextField(default = "")
@@ -21,3 +22,9 @@ class testblockDB(models.Model):
     senderKey       = models.CharField(max_length = 50)
     receiverKey     = models.CharField(max_length = 50)
     amount          = models.FloatField(default = 0.0)
+
+class userFile(models.Model):
+    lastMod          = models.DateTimeField(auto_now_add=True)
+    userid           = models.CharField(max_length = 50)
+    balance          = models.FloatField(default = 0.0)
+    
