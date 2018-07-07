@@ -26,7 +26,7 @@ def error(errorName):
 def sell_block(request):
     
     if request.method=='POST':
-        print("method is post")
+        
         # getting last row data from transactions table
         
         form=forms.SellBlock(request.POST)
@@ -39,7 +39,7 @@ def sell_block(request):
             mlist = [str(instance.data), str(instance.amount), str(instance.senderKey), str(instance.receiverKey)]
             
             ret = list(newNode(mlist))  # ret[0] = true /false  ret[1] = error string
-            
+            print(ret)
             if (ret[0]):
                 return HttpResponse('DB saved')
             else:

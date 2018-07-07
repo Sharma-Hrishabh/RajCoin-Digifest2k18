@@ -35,13 +35,13 @@ class blockchain:
 		chain = blockDB.objects.all()[0]
 
 		if not chain:
-			self.createGenesis(self)
+			self.createGenesis()
 
 		self.difficulty = 2
 
 
-	def createGenesis(self):
-		point = block(0, "This is a Genesis Block", time.ctime(), 0, "GOVERNMENT", "GOVERNMENT" , sha256(a.encode()).hexdigest())
+	def createGenesis():
+		point = block(0, "This is a Genesis Block", time.ctime(), 0, "GOVERNMENT", "GOVERNMENT" , '')
 
 		temp = blockDB(data = str(point.data), time = str(point.timestamp), previousHash = str(point.previousHash), hashe = point.hashe, senderKey = str(point.sender), receiverKey = str(point.receiver), amount = float(point.amount) )
 		
@@ -84,7 +84,7 @@ def checkValidity(tempHashes, hashe):
 def newNode(dataList):
 	
 	RajCoins = blockchain()
-    
+	
 	# making a temporary DB
 	tempDB = testblockDB()
 	tempDB = RajCoins.returnDbCopy()                 # copying blockChain data to new temporary data
