@@ -1,4 +1,5 @@
 from .models import blockDB
+from .models import testblockDB
 from hashlib import sha256
 import time
 import json
@@ -31,7 +32,7 @@ class block:
 
 class blockchain:
 	def __init__(self):
-		chain = blockDB.objects[0]
+		chain = blockDB.objects.all()[0]
 
 		if not chain:
 			self.createGenesis(self)
@@ -55,41 +56,48 @@ class blockchain:
 		node = temp
 		node.save()
 
-		
+
 
 # making a copy of blockchain data
 #blockChain = blockDB.objects.all()
 
-
-def checkValidity(tempHashes, point.hashe):
+# ------------------------------------------------checking validity function -----------------------------------------
+def checkValidity(tempHashes, hashe):
 	
 	for i in range(1, len(tempHashes)):
-		previousNodeHash = tempHashes[i-1].hashe
-		currentNodePrevHash  = tempHashes[i].previousHash
-		currentNodeHash = tempHashes[i].hashe
+		previousNodeHash = tempHashes[i-1]['hashe']
+		currentNodePrevHash  = tempHashes[i]['previousHash']
+		currentNodeHash = tempHashes[i]['hashe']
 		
 		
 		if not currentNodePrevHash == previousNodeHash:
 			return False
 
-	if not currentNodeHash == point.hashe:
+	if not currentNodeHash == hashe:
 			return False
 
 	return True
 
-		
+
+
+# ----------------------------------------------------New Node function -----------------------------------------------		
 def newNode(dataList):
 	
-	RajCoins = blockChain()
-
+	RajCoins = blockchain()
+    
 	# making a temporary DB
 	tempDB = testblockDB()
 	tempDB = RajCoins.returnDbCopy()                 # copying blockChain data to new temporary data
-	tempDB.save()
+	# tempDB.save()
+	for object in tempDB:
+		object.save()
 	
 	
-	lastBlock = testblockDB.objects.order_by('-time')[0]
-	prevHash = lastBlock.hashe
+	lastBlock = blockDB.objects.latest('hashe')
+	if not lastBlock:
+		raise Exception('empty Empty!')
+	else:
+		prevHash = lastBlock.hashe
 	
 	# saving form Data to block object i.e. a new node
 	point = block(3, dataList[0], time.ctime(), dataList[1], dataList[2], dataList[3], prevHash)  
@@ -112,5 +120,6 @@ def newNode(dataList):
 	else:
 		#exception
 		#redirect to error.html
-		
 		return False, "Invalid Transaction"
+		
+		
