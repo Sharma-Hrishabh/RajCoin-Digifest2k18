@@ -158,11 +158,11 @@ After this clone repositery in current directory
 - for making transaction,currently login is not necessary,[@login function can be used in future releases ]
 - updation of amount of money that user has is not working
 - in mobile view ,toggle button is not apperaing,but if we tap at rightmost uppercorner navigation bar slides from right
-- 
+- after selling coins redirect function is not working
 
 
 
 
 
-
+## Developed for Rajasthan Hackathon
 
