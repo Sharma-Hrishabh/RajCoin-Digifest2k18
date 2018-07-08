@@ -162,12 +162,7 @@ After this clone repositery in current directory
 
 
 
-## design of BLOCKCHAIN
 
-![alt text](https://github.com/Sharma-Hrishabh/digifest2k18/blob/master/2.png)
-![alt text](https://github.com/Sharma-Hrishabh/digifest2k18/blob/master/3.png)
-![alt text](https://github.com/Sharma-Hrishabh/digifest2k18/blob/master/4.png)
-![alt text](https://github.com/Sharma-Hrishabh/digifest2k18/blob/master/5.png)
 
 team ## A'did Shafts
 
