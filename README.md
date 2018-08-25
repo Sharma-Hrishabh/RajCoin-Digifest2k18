@@ -1,4 +1,4 @@
-# Rajasthan-Hackathon[Online]
+# Rajasthan-Online-Hackathon-2018
 ### First-Prize Winning Project
 #### ©A'Did Shafts
 
@@ -153,7 +153,7 @@ Now at this stage u can install packages like Django here
 After this clone repositery in current directory
 >git clone https://github.com/Sharma-Hrishabh/digifest2k18
 
-[for better working use 'digifest2k18' as virtualenv name]
+[for avoiding confusions use 'digifest2k18' as virtualenv name]
 
 
 
