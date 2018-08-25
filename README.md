@@ -1,4 +1,7 @@
 # Rajasthan-Hackathon
+### First-Prize Winning Project
+#### ©A'Did Shafts
+
 ## Idea Description :
 Developing RajCoins cryptocurrency system(block-chain) using Bhamashah API where users can transact each other with RajCoins. 
 
@@ -168,5 +171,6 @@ team ## A'did Shafts
 
 
 ## Developed for Rajasthan Hackathon
+# © A'Did Shafts[Winning Project]
 
 
